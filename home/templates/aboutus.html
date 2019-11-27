@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% for baiviet in baiviets %}
+<div class="container">
+    <!-- Blog Post -->
+    <div class="card mb-4">
+            <a href="{% url 'home:noidung_baiviet' baiviet.pk %}">
+                <center ><img class="card-img-top" src="{% static 'images/blog/' %}{{ baiviet.anhbia }}" alt="Card image cap" style="height: 600px;width: 1140px"></center>
+        </a>
+        <div class="card-body">
+            <h2 class="card-title">{{ baiviet.tieude }}</h2>
+            <p class="card-text" style="font-size:20px ">{{ baiviet.noidung|slice:"0:250" }} . . .
+
+                <a class="btn btn-sm btn-outline-primary" href="{% url 'home:noidung_baiviet' baiviet.pk %}" style="font-size:20px ">Đọc
+                    tiếp</a></p>
+        </div>
+    </div>
+</div>
+    {% endfor %}
+{% endblock content %}

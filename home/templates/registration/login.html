@@ -1,0 +1,25 @@
+{% extends  'account_page.html' %}
+
+{% block content %}
+	<section id="form"><!--form-->
+		<div class="container" >
+			<div class="row"  >
+				<div class="col-sm-4 col-sm-offset-3">
+					<div class="login-form" ><!--login form-->
+						<h2 style="font-size:30px"><b>Login to your account</b></h2>
+						<form method="post">
+                			{% csrf_token %}
+                			{{ form.as_p }}
+                  		<button type="submit" class="btn btn-black">Đăng nhập</button>
+               			</form>
+                		<hr>
+                		<h4>Chưa có tài khoản?</h4>
+              			<a href="{% url 'home:signup' %}" class="stretched-link">Đăng ký</a>
+					</div><!--/login form-->
+				</div>
+
+
+			</div>
+		</div>
+	</section><!--/form-->
+{% endblock content %}

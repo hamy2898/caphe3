@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Danh mục</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							{% for item in categorys3 %}
+                            <div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="{% url 'home:productcat' item.id %}">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											{{ item.title }}
+										</a>
+									</h4>
+								</div>
+
+							</div>
+                            {% endfor %}
+						</div><!--/category-products-->
+
+
+
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+                     <div class="features_items">
+                        {% if messages %}
+                           <ul class="messages">
+                              {% for k in messages %}
+                              <li style="color:red">{{k}}</li>
+                              {% endfor %}
+                           </ul>
+                         {% endif %}
+                     </div>
+                     <div style="color:blue">
+                        {% if sr %}
+                           {% for k in sr %}
+                              <div class="col-sm-4">
+                                  <div class="product-image-wrapper">
+                                      <div class="single-products">
+                                              <div class="productinfo text-center">
+                                                  <a href="{% url 'home:detail' k.pk %}">
+                                                    <img src="{% static 'images/shop/' %}{{ k.product_img }}" alt="" />
+                                                  </a>
+                                                  <h2>{{ k.price }}</h2>
+                                                  <a href="{% url 'home:detail' k.pk %}">
+                                                      <p>{{ k.title }}</p>
+                                                  </a>
+                                                  <a class="btn btn-default add-to-cart"  onclick="addCart({{k.id}})"><i class="fa fa-shopping-cart" ></i>Thêm giỏ hàng</a>
+                                              </div>
+
+                                      </div>
+
+                                  </div>
+                              </div>
+                           {% endfor %}
+                        {% endif %}
+                     </div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

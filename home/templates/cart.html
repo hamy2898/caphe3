@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% load mathfilters %}
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+
+            <div class="table-responsive cart_info" id = "listCart">
+				<table class="table table-condensed" id = "cartx">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Ảnh sản phẩm</td>
+							<td class="description">Tên sản phẩm</td>
+							<td class="price">Đơn giá</td>
+							<td class="quantity">Số lượng</td>
+							<td class="total">Thành tiền</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for key,value in request.session.cart.items %}
+
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="{% static 'images/shop/' %}{{value.image}}" alt="" style="height:60px;width:60px"></a>
+							</td>
+							<td class="cart_title">
+								<h4><a href="">{{value.name}}</a></h4>
+							</td>
+							<td class="cart_price">
+								<p>{{value.price}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<input id = "quantity_{{key}}" onchange="updateCart({{key}})" type="text" name="quantity_{{key}}" value="{{value.num}}" autocomplete="off" size="2">
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">{{value.price|mul:value.num}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="delete" onclick="deleteCart({{key}})"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						{% endfor %}
+						<tr class="end">
+							<td colspan="4">
+								<a class="btn btn-default update" href="{% url 'home:product' %}" style="font-size: 20px">Cập nhật </a>
+								<a class="btn btn-default check_out" href="{% url 'home:checkout' %}" style="font-size: 20px">Thanh toán </a>
+							</td>
+							<td colspan="2" class="text-danger text-left" >
+								<strong style="font-size: 24px">{{total}}</strong>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</section> <!--/#cart_items-->
+{% endblock content %}

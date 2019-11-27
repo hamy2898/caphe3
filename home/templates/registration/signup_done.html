@@ -1,0 +1,18 @@
+{% extends 'account_page.html' %}
+{% block content %}
+
+<div class = "row">
+    <div class="col-md-4">
+    </div>
+      <div class="col-md-4">
+        <h1>Lập tài khoản thành công</h1>
+        <a>Chúc mừng! Tài khoản của bạn đã lập thành công. Hãy liên hệ với quản trị viên để được kích hoạt tài khoản và phân quyền</a>
+          <a href="{% url 'home:login' %}">
+              <button class = "btn btn-lg btn-gradient-warning btn-block btn-rounded mb-4 mt-5">
+                  Đăng nhập
+             </button>
+          </a>
+        </div>
+</div>
+
+{% endblock content %}

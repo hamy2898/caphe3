@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+<img class="img-fluid rounded" src="{{baiviet.anhbia}}" alt="" style="height: 700px;width: 1140px">
+
+    <hr>
+
+    <!-- Post Content -->
+    <p class="lead" style="font-color:black">{{baiviet.noidung}}</p>
+    <hr>
+</div>
+{% endblock %}

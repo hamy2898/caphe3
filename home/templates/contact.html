@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="contact-page" class="container">
+    	<div class="bg">
+	    	<div class="row">
+	    		<div class="col-sm-12">
+					<h2 class="title text-center">Tìm <strong>Chúng tôi</strong></h2>
+					<div id="gmap" class="contact-map">
+                        <div class="col-lg-6" style="height:700px;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1862.4332919378253!2d105.84464065789001!3d20.99798450059731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac7192748791%3A0xdb1e85da8c44b15f!2zMjMwIFRy4bqnbiDEkOG6oWkgTmdoxKlhLCDEkOG7k25nIFTDom0sIEhhaSBCw6AgVHLGsG5nLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1571536544270!5m2!1svi!2s" width="1000" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        </div>
+					</div>
+				</div>
+			</div>
+    		<div class="row">
+	    		<div class="col-sm-8">
+                    {% if  new_comment %}
+                    <div class="alert alert-primary">
+                        <div class="media-body">
+                            <h4 class="mt-0">Chào người dùng <a href="#">{{ name }}</a> ! </h4>
+                            <h4>Nội dung lời nhắn: "<strong>{{ new_comment }}</strong>" của bạn đã được gửi đi! </h4>
+                            <div><h4>Chúng tôi sẽ tiếp thu và sửa đổi ! Xin chân thành cảm ơn !</h4></div>
+                        </div>
+                    </div>
+                    {% endif %}
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">Để lại lời nhắn</h2>
+	    				<div class="status alert alert-success" style="display: none"></div>
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="{% url 'home:comment' %}">
+							{% csrf_token %}
+				            <div class="form-group col-md-6">
+				                <input type="text" name="name" class="form-control" required="required" placeholder="Name" value="{{name}}">
+				            </div>
+				            <div class="form-group col-md-6">
+				                <input type="email" name="email" class="form-control" required="required" placeholder="Email" value="{{email}}">
+				            </div>
+				            <div class="form-group col-md-12">
+				                <textarea  id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here" value = "{{ new_comment }}" name="noidung_binhluan" ></textarea>
+				            </div>
+				            <div class="form-group col-md-12">
+				                <button type="submit" class="btn btn-primary">Gửi </button>
+				            </div>
+				        </form>
+	    			</div>
+	    		</div>
+
+	    		<div class="col-sm-4">
+	    			<div class="contact-info">
+	    				<h2 class="title text-center">Địa chỉ</h2>
+	    				<address>
+	    					<p>Giờ mở cửa</p>
+							<p>7:00 - 23:00 (7 ngày / tuần)</p>
+							<p>Địa chỉ: 230 Hai Bà Trưng - Hà Nội - Việt Nam</p>
+							<p>Mobile: +2346 17 38 93</p>
+							<p>Email: info@e-shopper.com</p>
+	    				</address>
+	    				<div class="social-networks">
+	    					<h2 class="title text-center">Mạng xã hội</h2>
+							<ul>
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-youtube"></i></a>
+								</li>
+							</ul>
+	    				</div>
+	    			</div>
+    			</div>
+	    	</div>
+    	</div>
+    </div><!--/#contact-page-->
+{% endblock %}
