@@ -25,21 +25,11 @@
                             {% endfor %}
 						</div><!--/category-products-->
 
-
-
 					</div>
 				</div>
 
 				<div class="col-sm-9 padding-right">
-                     <div class="features_items">
-                        {% if messages %}
-                           <ul class="messages">
-                              {% for k in messages %}
-                              <li style="color:red">{{k}}</li>
-                              {% endfor %}
-                           </ul>
-                         {% endif %}
-                     </div>
+
                      <div style="color:blue">
                         {% if sr %}
                            {% for k in sr %}
@@ -63,6 +53,15 @@
                               </div>
                            {% endfor %}
                         {% endif %}
+                     </div>
+                     <div class="features_items">
+                        {% if messages %}
+                           <ul class="messages">
+                              {% for k in messages %}
+                              <li style="color:red">{{k}}</li>
+                              {% endfor %}
+                           </ul>
+                         {% endif %}
                      </div>
 				</div>
 			</div>

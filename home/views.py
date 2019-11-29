@@ -6,6 +6,7 @@ from .models import Product, Category,BaiViet,Order,OrderDetail,Comment
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.db.models import Q
+#Sử dụng các đối tượng Q, chúng ta có thể thực hiện các truy vấn phức tạp với mã ít hơn và đơn giản=> phù hợp vs lọc động
 from django.contrib import messages
 
 
@@ -126,7 +127,7 @@ def updatecart(request):
         id = request.POST.get('id')
         num = request.POST.get('num')
         if id in cart.keys():
-            if(int(cart[id]['num']) > 0 ):
+            if(int(num) > 0 ):
                 cart[id] = {
                     'name': cart[id]['name'],
                     'price': cart[id]['price'],
@@ -210,13 +211,10 @@ def comment(request):
 
 def search(request):
     categories = Category.objects.all()
-    context = {
-        'categorys3': categories,
-    }
     if request.method == 'POST':
         srch = request.POST['srh']
         if srch:
-            match = Product.objects.filter(Q(title__istartswith = srch))
+            match = Product.objects.filter(Q(title__istartswith = srch))#istartswith: lọc theo từ đầu của đối tượng
             if match:
                 return render(request,'result.html',{'sr': match})
             else:
